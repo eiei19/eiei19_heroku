@@ -6,6 +6,12 @@ GIT
       actionmailer (~> 4.0)
       activesupport (~> 4.0)
 
+PATH
+  remote: anotoki
+  specs:
+    anotoki (0.0.1)
+      rails (~> 4.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -188,6 +194,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  anotoki!
   coffee-rails (~> 4.1.0)
   dotenv-rails
   erb2haml

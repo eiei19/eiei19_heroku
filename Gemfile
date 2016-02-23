@@ -1,4 +1,7 @@
 source 'https://rubygems.org'
+
+gem "anotoki", path: "anotoki"
+
 gem 'rails', '4.2.0'
 gem 'mysql2', '~> 0.3.20'
 gem 'sass-rails', '~> 5.0'
