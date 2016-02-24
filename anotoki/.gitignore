@@ -15,6 +15,7 @@
 .envrc
 .pryrc
 .DS_Store
+*.pyc
 
 config/settings.local.yml
 config/settings/*.local.yml
