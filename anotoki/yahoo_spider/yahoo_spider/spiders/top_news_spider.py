@@ -2,6 +2,7 @@
 import scrapy
 import re
 import datetime
+import yahoo_spider.jst
 from yahoo_spider.items import TopNewsItem
 
 class TopNewsSpider(scrapy.Spider):
