@@ -16,6 +16,7 @@ gem 'haml-rails'
 gem 'rails_12factor', group: :production
 gem 'exception_notification', :github => 'smartinez87/exception_notification'
 gem 'slack-notifier'
+gem 'aws-sdk', '~> 2'
 
 group :development, :test do
   gem 'dotenv-rails'
