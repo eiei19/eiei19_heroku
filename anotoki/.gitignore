@@ -16,6 +16,8 @@
 .pryrc
 .DS_Store
 *.pyc
+yahoo_spider/yahoo_spider/settings.py
+yahoo_spider/build/
 
 config/settings.local.yml
 config/settings/*.local.yml

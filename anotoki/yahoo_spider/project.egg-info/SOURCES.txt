@@ -6,6 +6,7 @@ project.egg-info/entry_points.txt
 project.egg-info/top_level.txt
 yahoo_spider/__init__.py
 yahoo_spider/items.py
+yahoo_spider/jst.py
 yahoo_spider/pipelines.py
 yahoo_spider/settings.py
 yahoo_spider/spiders/__init__.py
