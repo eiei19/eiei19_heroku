@@ -1,0 +1,9 @@
+!!!
+%html
+  %head
+    %title Anotoki
+    = stylesheet_link_tag    "anotoki/application", media: "all"
+    = javascript_include_tag "anotoki/application"
+    = csrf_meta_tags
+  %body
+    = yield

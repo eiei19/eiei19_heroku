@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160302134323) do
+ActiveRecord::Schema.define(version: 20160303132159) do
 
   create_table "yahoo_news", force: :cascade do |t|
     t.string   "topic_id",                limit: 255
@@ -27,5 +27,15 @@ ActiveRecord::Schema.define(version: 20160302134323) do
 
   add_index "yahoo_news", ["posted_at"], name: "index_yahoo_news_on_posted_at", using: :btree
   add_index "yahoo_news", ["topic_id"], name: "index_yahoo_news_on_topic_id", using: :btree
+
+  create_table "yahoo_news_keywords", force: :cascade do |t|
+    t.date     "week_start_date"
+    t.string   "word",            limit: 255
+    t.integer  "count",           limit: 4
+    t.datetime "updated_at"
+  end
+
+  add_index "yahoo_news_keywords", ["week_start_date", "word"], name: "index_yahoo_news_keywords_on_week_start_date_and_word", using: :btree
+  add_index "yahoo_news_keywords", ["week_start_date"], name: "index_yahoo_news_keywords_on_week_start_date", using: :btree
 
 end

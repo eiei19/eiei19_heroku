@@ -1,3 +1,4 @@
+require 'open-uri'
 namespace :anotoki_yahoo_news do
   task :fetch_from_s3 => :environment do |t|
     s3 = Aws::S3::Client.new(region: "ap-northeast-1")
@@ -23,4 +24,37 @@ namespace :anotoki_yahoo_news do
       end
     end
   end
+
+  task :generate_keywords, ["date"] => :environment do |t, args|
+    reject_words = %w(女性 男性 逮捕 結婚 死亡 捜査 批判 否定 決議 採択 終了 停止 殺害)
+    if args[:date]
+      target_date = Date.parse(args[:date])
+    else
+      target_date = Date.today
+    end
+    week_start_date = target_date - target_date.wday
+    keywords = {}
+    YahooNews.where("? <= posted_at AND posted_at <= ?", week_start_date.beginning_of_day, (week_start_date+6).end_of_day).find_in_batches(batch_size: 15) do |news_list|
+      sentence = news_list.map{|news|news.title}.join(",")
+      query = "http://jlp.yahooapis.jp/MAService/V1/parse?appid=#{ENV["YAHOO_APP_ID"]}&results=uniq&uniq_filter=9&sentence=#{sentence}"
+      res = Hash.from_xml(open(URI.encode(query)).read)
+      res["ResultSet"]["uniq_result"]["word_list"]["word"].each do |w|
+        word = w["surface"].gsub(/\d/, "")
+        next if word.blank?
+        count = w["count"].to_i
+        keywords[word] = 0 unless keywords[word]
+        keywords[word] += count
+      end
+    end
+    keywords = keywords.reject{|keyword, count| count < 3 || keyword.length < 2 || reject_words.include?(keyword)}
+    keywords.each do |word, count|
+      if keyword = YahooNewsKeyword.find_by(week_start_date: week_start_date, word: word)
+        keyword.count = count
+      else
+        keyword = YahooNewsKeyword.new(week_start_date: week_start_date, word: word, count: count)
+      end
+      keyword.save
+    end
+  end
+
 end

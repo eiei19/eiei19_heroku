@@ -1,1 +1,30 @@
-Anotoki Home
+.container
+  .page-header
+    %h1#timeline
+      アノトキノヤフーニュース
+  %ul.timeline
+    %li
+      .timeline-badge
+        Prev
+      .timeline-panel
+        Prev
+    - @keywords.each do |week_start_date, keyword_list|
+      %li
+        .timeline-badge.info
+          %i.glyphicon.glyphicon-floppy-disk
+        .timeline-panel
+          .timeline-heading
+            %h4.timeline-title
+              = week_start_date.strftime("%b %-d %Y")
+              \-
+              = (week_start_date+6).strftime("%b %-d %Y")
+          .timeline-body
+            %p
+              - keyword_list.each do |keyword|
+                #{keyword.word}(#{keyword.count})
+
+            %hr/
+            - (0..6).each do |i|
+              %a.btn.btn-default.btn-xs{href: "#"}
+                = (week_start_date+i).strftime("%b %-d")
+
