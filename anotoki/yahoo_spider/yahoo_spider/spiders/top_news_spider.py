@@ -10,14 +10,27 @@ class TopNewsSpider(scrapy.Spider):
     allowed_domains = ["news.yahoo.co.jp"]
 
     def __init__(self, prefecture=None, *args, **kwargs):
-        self.start_urls = ['http://news.yahoo.co.jp/topics']
+        self.start_urls = [
+            'http://news.yahoo.co.jp/',
+            'http://news.yahoo.co.jp/hl?c=dom',
+            'http://news.yahoo.co.jp/hl?c=c_int',
+            'http://news.yahoo.co.jp/hl?c=bus',
+            'http://news.yahoo.co.jp/hl?c=c_ent',
+            'http://news.yahoo.co.jp/hl?c=c_spo',
+            'http://news.yahoo.co.jp/hl?c=c_sci',
+            'http://news.yahoo.co.jp/hl?c=loc'
+        ]
 
     def parse(self, response):
-        for li in response.xpath('//ul[@class="fl" or @class="fr"]/li[not(@class)]'):
+        for li in response.xpath('//ul[@class="topics"]/li[not(@class) or @class!="topicsFt"]'):
             yield scrapy.Request(li.xpath('.//a/@href').extract_first(), callback=self.parse_detail)
 
     def parse_detail(self, response):
         item = TopNewsItem()
+        if response.request.headers.get('Referer') == "http://news.yahoo.co.jp/":
+            item['is_top'] = True
+        else:
+            item['is_top'] = False
         item['id'] = response.url.split("/")[-1]
         item['category'] = response.xpath('//ul[@id="gnSec"]/li[@class="current"]/a/text()').extract_first()
         item['posted_at'] = response.xpath('//div[@class="topicsName"]/span[@class="date"]/text()').extract_first()

@@ -8,6 +8,7 @@
 import scrapy
 
 class TopNewsItem(scrapy.Item):
+    is_top = scrapy.Field()
     id = scrapy.Field()
     category = scrapy.Field()
     posted_at = scrapy.Field()

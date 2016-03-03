@@ -8,10 +8,12 @@ namespace :anotoki_yahoo_news do
         data = JSON.parse(json)
         if news = YahooNews.find_by(topic_id: data["id"])
           news.last_posted_at = Time.parse(data["parsed_at"])
+          news.is_top = true if data["is_top"]
         else
           news = YahooNews.new(
             topic_id: data["id"],
             category: data["category"],
+            is_top: data["is_top"],
             title: data["title"],
             text: data["text"],
             topic_link: data["topic_link"],
