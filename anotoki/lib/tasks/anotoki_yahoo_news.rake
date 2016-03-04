@@ -28,7 +28,7 @@ namespace :anotoki_yahoo_news do
   end
 
   task :generate_keywords, ["date"] => :environment do |t, args|
-    reject_words = %w(女性 男性 逮捕 結婚 死亡 捜査 批判 否定 決議 採択 終了 停止 殺害 処分 投手 選手 開幕 アナ 日本)
+    reject_words = %w(女性 男性 逮捕 結婚 死亡 捜査 批判 否定 決議 採択 終了 停止 殺害 処分 投手 選手 アナ 日本)
     if args[:date]
       target_date = Date.parse(args[:date])
     else
