@@ -1,0 +1,27 @@
+- content_for :stylesheet do
+  = stylesheet_link_tag "anotoki/posts"
+
+.container
+  .page-header
+    .align-center
+      %a{href: "/anotoki"}
+        = image_tag "/assets/anotoki/title_logo.png", alt: "アノトキノヤフーニュース", class: "title"
+    %h1
+      = @title_h1
+
+  - if @news.present?
+    #news_of_day
+      .category_news
+        %h2
+          = "#{params[:keyword]}を含むニュース"
+        %ul
+          - @news.each do |news|
+            %li
+              %a{href: news.topic_link, target: "_blank"}
+                = news.title
+              %span.duration
+                約#{news.formatted_duration}掲載
+
+  - else
+    .row
+      ないよ

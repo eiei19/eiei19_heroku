@@ -6,12 +6,8 @@ h1 {
   text-align: center;
 }
 
-#news_of_day {
-  position: relative;
-  max-width: 100%;
-  width: 100%;
-  .category_news {
-    position: absolute;
-    padding: 10px;
+@media (max-width: 475px) {
+  img.title {
+    width: 100%;
   }
 }

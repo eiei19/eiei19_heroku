@@ -17,6 +17,10 @@ gem 'rails_12factor', group: :production
 gem 'exception_notification', :github => 'smartinez87/exception_notification'
 gem 'slack-notifier'
 gem 'aws-sdk', '~> 2'
+gem 'draper', '~> 1.3'
+gem 'seory'
+gem 'carrierwave'
+gem 'fog'
 
 group :development, :test do
   gem 'dotenv-rails'

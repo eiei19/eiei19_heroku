@@ -4,38 +4,30 @@
 .container
   .page-header
     %h1#timeline
-      = image_tag "anotoki/title_logo.png", alt: "アノトキノヤフーニュース"
-  %ul.timeline
-    -#
-      %li.button
-        .timeline-badge
-          Prev
+      = image_tag "anotoki/title_logo.png", alt: "アノトキノヤフーニュース", class: "title"
 
-    - i = 0
+  .timeline
+    .line.text-muted
+
     - @keywords.each do |week_start_date, keyword_list|
-      %li{class: ("timeline-inverted" if i%2 == 1)}
-        .timeline-badge.info
+      %article.panel.panel-anotoki
+        .panel-heading.icon
           %i.glyphicon.glyphicon-calendar
-        .timeline-panel
-          .timeline-heading
-            %h2.timeline-title
-              #{week_start_date.strftime("%Y年%-m月%-d日")}週のキーワード
-
-          .timeline-body
-            %ul.keywords
-              - keyword_list.each do |keyword|
-                %li
-                  %a{href: "#"}
-                    #{keyword.word}(#{keyword.count})
-
-          %hr
-
-          .timeline-heading
-            %h2.timeline-title
-              ニュース一覧を見る
-          .timeline-body
-            %ul.days
-              - (0..6).each do |i|
-                %li
-                  %a{href: "#"}
-                    = (week_start_date+i).strftime("%-m/%-d")
+        .panel-heading
+          %h2.panel-title #{week_start_date.strftime("%Y年%-m月%-d日")}週のキーワード
+        .panel-body
+          %ul.keywords
+            - keyword_list.each do |keyword|
+              %li
+                %a{href: anotoki_path(week_start_date, keyword.word)}
+                  #{keyword.word}(#{keyword.count})
+        .panel-footer
+          %h2.panel-title.watch-news ニュース一覧を見る
+          %ul.days
+            - (0..6).each do |i|
+              %li
+                %a{href: anotoki_path(week_start_date+i)}
+                  = (week_start_date+i).strftime("%-m/%-d")
+      -#
+        .separator.text-muted
+          %time #{(week_start_date+6).strftime("%Y / %-m / %-d")}
