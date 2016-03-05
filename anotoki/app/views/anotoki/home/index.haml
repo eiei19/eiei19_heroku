@@ -1,12 +1,10 @@
 .container
   .page-header
     %h1#timeline
-      アノトキノヤフーニュース
+      = image_tag "anotoki/title_logo.png", alt: "アノトキノヤフーニュース"
   %ul.timeline
-    %li
+    %li.button
       .timeline-badge
-        Prev
-      .timeline-panel
         Prev
     - @keywords.each do |week_start_date, keyword_list|
       %li
