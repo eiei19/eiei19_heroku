@@ -150,3 +150,26 @@
 .timeline-body > p + p {
   margin-top: 5px;
 }
+
+.timeline {
+  h2 {
+    font-size: 14px;
+    color: #AAA;
+  }
+
+  ul.keywords, ul.days {
+    padding: 0;
+    li {
+      list-style: none;
+      display: inline-block;
+      margin-right: 6px;
+      margin-bottom: 3px;
+      font-size: 14px;
+    }
+  }
+
+  hr {
+    margin: 6 0;
+    border-color: #DDD;
+  }
+}

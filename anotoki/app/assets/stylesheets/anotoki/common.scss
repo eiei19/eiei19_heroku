@@ -1,3 +1,17 @@
 body {
   background: url("seamless_paper_texture.png");
 }
+
+h1 {
+  text-align: center;
+}
+
+#news_of_day {
+  position: relative;
+  max-width: 100%;
+  width: 100%;
+  .category_news {
+    position: absolute;
+    padding: 10px;
+  }
+}

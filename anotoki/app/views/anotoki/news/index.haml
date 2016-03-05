@@ -1,0 +1,41 @@
+- content_for :stylesheet do
+  = stylesheet_link_tag 'anotoki/index', media: 'screen'
+
+.container
+  .page-header
+    %h1#timeline
+      = image_tag "anotoki/title_logo.png", alt: "アノトキノヤフーニュース"
+  %ul.timeline
+    -#
+      %li.button
+        .timeline-badge
+          Prev
+
+    - i = 0
+    - @keywords.each do |week_start_date, keyword_list|
+      %li{class: ("timeline-inverted" if i%2 == 1)}
+        .timeline-badge.info
+          %i.glyphicon.glyphicon-calendar
+        .timeline-panel
+          .timeline-heading
+            %h2.timeline-title
+              #{week_start_date.strftime("%Y年%-m月%-d日")}週のキーワード
+
+          .timeline-body
+            %ul.keywords
+              - keyword_list.each do |keyword|
+                %li
+                  %a{href: "#"}
+                    #{keyword.word}(#{keyword.count})
+
+          %hr
+
+          .timeline-heading
+            %h2.timeline-title
+              ニュース一覧を見る
+          .timeline-body
+            %ul.days
+              - (0..6).each do |i|
+                %li
+                  %a{href: "#"}
+                    = (week_start_date+i).strftime("%-m/%-d")
