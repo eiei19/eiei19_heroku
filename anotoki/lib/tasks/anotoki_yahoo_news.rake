@@ -48,7 +48,7 @@ namespace :anotoki_yahoo_news do
         keywords[word] += count
       end
     end
-    keywords = keywords.reject{|keyword, count| count < 3 || keyword.length < 2 || reject_words.include?(keyword)}
+    keywords = keywords.reject{|keyword, count| count < 2 || keyword.length < 2 || reject_words.include?(keyword)}
     keywords.each do |word, count|
       if keyword = YahooNewsKeyword.find_by(week_start_date: week_start_date, word: word)
         keyword.count = count
