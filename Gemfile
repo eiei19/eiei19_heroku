@@ -21,6 +21,7 @@ gem 'draper', '~> 1.3'
 gem 'seory'
 gem 'carrierwave'
 gem 'fog'
+gem 'sitemap_generator'
 
 group :development, :test do
   gem 'dotenv-rails'

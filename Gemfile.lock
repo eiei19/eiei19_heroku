@@ -309,6 +309,8 @@ GEM
       activesupport (> 3.2)
       railties (> 3.2)
     sexp_processor (4.7.0)
+    sitemap_generator (5.1.0)
+      builder
     slack-notifier (1.5.1)
     slop (3.6.0)
     spring (1.6.3)
@@ -359,6 +361,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   seory
+  sitemap_generator
   slack-notifier
   spring
   turbolinks

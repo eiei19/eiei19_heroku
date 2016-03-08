@@ -40,4 +40,7 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   config.quiet_assets = true
+
+  ## 以下config
+  config.anotoki_s3_bucket = 'anotoki-dev'
 end

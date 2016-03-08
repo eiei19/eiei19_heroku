@@ -76,4 +76,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  ## 以下config
+  config.anotoki_s3_bucket = 'anotoki'
 end
