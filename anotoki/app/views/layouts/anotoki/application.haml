@@ -4,6 +4,7 @@
     %title= seory.title
     %meta{:name => "description", :content => "#{seory.meta_description}"}
     %meta{:name => "keywords", :content => "#{seory.meta_keywords}"}
+    %meta{:content => image_path("anotoki/ogp_image.png"), :property => "og:image"}
     = stylesheet_link_tag '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css', media: 'all'
     = stylesheet_link_tag 'anotoki/application', media: 'all'
     = yield :stylesheet
