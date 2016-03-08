@@ -3,15 +3,7 @@ require_dependency "anotoki/application_controller"
 module Anotoki
   class NewsController < ApplicationController
     def index
-      target_date = 4.weeks.ago
-      week_start_date = target_date - target_date.wday
-      @keywords = YahooNewsKeyword.where(
-        "? <= week_start_date AND week_start_date <= ?",
-        week_start_date, week_start_date+28.days
-      ).order("count desc").limit(15)
-      .group_by do |keyword|
-        keyword.week_start_date
-      end
+      @keywords = YahooNewsKeyword::get_keywords
     end
 
     def date
