@@ -16,17 +16,20 @@ class YahooNewsKeyword < ActiveRecord::Base
       ## 週ごとにグルーピング
       keyword.week_start_date
     end
-    return keywords
+    return Hash[keywords.sort.reverse]
   end
 
   private
     def self.get_threshold date
       today = Date.today
       if date < (today - today.wday)
-        ## 過去の週は3s
-        3
+        ## 過去の週は4
+        4
       else
-        if 2 <= today.wday
+        if 4 <= today.wday
+          ## 木曜以降は2
+          4
+        elsif 2 <= today.wday
           ## 火曜以降は3
           3
         else
