@@ -23,17 +23,17 @@ class YahooNewsKeyword < ActiveRecord::Base
     def self.get_threshold date
       today = Date.today
       if date < (today - today.wday)
-        ## 過去の週は4
-        4
+        ## 過去の週
+        7
       else
         if 4 <= today.wday
-          ## 木曜以降は2
-          4
+          ## 木曜以降
+          7
         elsif 2 <= today.wday
-          ## 火曜以降は3
-          3
+          ## 火曜以降
+          4
         else
-          ## 月曜までは2
+          ## 月曜まで
           2
         end
       end
