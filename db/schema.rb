@@ -11,14 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160303144558) do
+ActiveRecord::Schema.define(version: 20160330095108) do
 
   create_table "yahoo_news", force: :cascade do |t|
     t.string   "topic_id",                limit: 255
     t.string   "category",                limit: 255
-    t.boolean  "is_top",                  limit: 1,     default: false
+    t.boolean  "is_top",                  limit: 1,   default: false
     t.string   "title",                   limit: 255
-    t.text     "text",                    limit: 65535
     t.string   "topic_link",              limit: 255
     t.string   "detail_link",             limit: 255
     t.datetime "posted_at"

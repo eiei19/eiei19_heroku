@@ -15,7 +15,6 @@ namespace :anotoki_yahoo_news do
             category: data["category"],
             is_top: data["is_top"],
             title: data["title"],
-            text: data["text"],
             topic_link: data["topic_link"],
             detail_link: data["detail_link"],
             posted_at: Time.parse(data["posted_at"].gsub(/年|月/, "/").gsub(/日\(.*\)/, "").gsub("時", ":").gsub(/分.*/, "")),
