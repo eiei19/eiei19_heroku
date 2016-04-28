@@ -20,7 +20,7 @@ module Api
       }
       s3 = Aws::S3::Client.new(setting)
       ws = Webshot::Screenshot.instance
-      shot = ws.capture params[:url], "tmp/tmp.png", width: width, height: height, quality: 100
+      shot = ws.capture params[:url], "tmp/tmp.png", width: width, height: height, quality: 85
       file_name = "#{SecureRandom.hex(16)}.png"
       s3.put_object(
         bucket: "easyscreenshots",
