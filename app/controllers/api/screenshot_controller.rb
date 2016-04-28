@@ -13,6 +13,7 @@ module Api
       end
       width = params[:width] || 1200
       height = params[:height] || 900
+      quality = params[:quality] || 85
       setting = {
         access_key_id: ENV["AWS_ACCESS_KEY_ID"],
         secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"],
@@ -20,7 +21,7 @@ module Api
       }
       s3 = Aws::S3::Client.new(setting)
       ws = Webshot::Screenshot.instance
-      shot = ws.capture params[:url], "tmp/tmp.png", width: width, height: height, quality: 85
+      shot = ws.capture params[:url], "tmp/tmp.png", width: width, height: height, quality: quality
       file_name = "#{SecureRandom.hex(16)}.png"
       s3.put_object(
         bucket: "easyscreenshots",
