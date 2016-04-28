@@ -22,6 +22,7 @@ gem 'seory'
 gem 'carrierwave'
 gem 'fog'
 gem 'sitemap_generator'
+gem 'webshot'
 
 group :development, :test do
   gem 'dotenv-rails'
