@@ -23,6 +23,11 @@ gem 'carrierwave'
 gem 'fog'
 gem 'sitemap_generator'
 gem 'webshot'
+gem 'capybara'
+gem 'capybara-user_agent'
+gem 'capybara-screenshot'
+gem 'poltergeist'
+gem 'rmagick'
 
 group :development, :test do
   gem 'dotenv-rails'
