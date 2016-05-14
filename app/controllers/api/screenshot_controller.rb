@@ -10,7 +10,7 @@ module Api
         end
       end
       Capybara.register_driver :poltergeist_shot do |app|
-        Capybara::Poltergeist::Driver.new(app, :js_errors => false, :phantomjs_options => ["--ssl-protocol=TLSv1"], :debug => false, timeout: 60)
+        Capybara::Poltergeist::Driver.new(app, :js_errors => false, :phantomjs_options => ["--ssl-protocol=TLSv1"], :debug => false, timeout: 20)
       end
       Capybara.current_driver = :poltergeist_shot
       visit(params[:url])
