@@ -36,7 +36,7 @@ module Api
           body: File.open(filepath),
           key: file_name
         )
-        urls << s3_resource.bucket("easyscreenshots").object(file_name).public_url
+        urls << s3_resource.bucket("easyscreenshots").object(file_name).public_url.gsub("easyscreenshots.s3-ap-northeast-1.amazonaws.com", "d1zmt8esqugh3r.cloudfront.net")
       end
       render json: urls
     end
